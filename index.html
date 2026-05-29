@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Akinola John Adegbite — Robotics & AI/ML Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c12;
+    --bg2: #0d1320;
+    --bg3: #111a28;
+    --green: #00e5a0;
+    --green2: #00b87d;
+    --text: #c9d8ea;
+    --muted: #5a7291;
+    --border: #1a2a3d;
+    --font-mono: 'Space Mono', monospace;
+    --font-sans: 'Syne', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--font-sans); line-height: 1.7; overflow-x: hidden; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--green2); border-radius: 2px; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 1.1rem 5%;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(8,12,18,0.85); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--font-mono); color: var(--green); font-size: 14px; letter-spacing: 1px; text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-family: var(--font-mono); font-size: 12px; color: var(--muted); text-decoration: none; letter-spacing: 1px; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--green); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 22px; height: 2px; background: var(--green); border-radius: 2px; transition: 0.3s; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; padding: 0 5%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 4rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .hero-content { padding-top: 5rem; }
+  .hero-tag { font-family: var(--font-mono); font-size: 12px; color: var(--green); letter-spacing: 3px; margin-bottom: 1rem; }
+  .hero-name { font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700; color: #e8f0fb; line-height: 1.1; margin-bottom: 0.5rem; }
+  .hero-role { font-family: var(--font-mono); font-size: 14px; color: var(--muted); margin-bottom: 1.5rem; }
+  .hero-bio { font-size: 15px; color: var(--text); line-height: 1.8; margin-bottom: 2rem; max-width: 480px; }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .btn-primary { background: var(--green); color: #080c12; padding: 11px 26px; border-radius: 6px; font-family: var(--font-mono); font-size: 12px; font-weight: 700; border: none; cursor: pointer; text-decoration: none; letter-spacing: 1px; transition: opacity 0.2s; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-outline { background: transparent; color: var(--green); padding: 11px 26px; border-radius: 6px; font-family: var(--font-mono); font-size: 12px; border: 1px solid var(--green); cursor: pointer; text-decoration: none; letter-spacing: 1px; transition: background 0.2s; }
+  .btn-outline:hover { background: rgba(0,229,160,0.08); }
+  .socials { display: flex; gap: 1rem; }
+  .socials a { color: var(--muted); font-size: 17px; text-decoration: none; transition: color 0.2s, transform 0.2s; }
+  .socials a:hover { color: var(--green); transform: translateY(-2px); }
+
+  /* HERO IMAGE */
+  .hero-image { display: flex; justify-content: center; align-items: center; padding-top: 5rem; }
+  .profile-ring {
+    position: relative; width: 320px; height: 320px;
+    border-radius: 50%; padding: 4px;
+    background: conic-gradient(var(--green), var(--green2), #0d1320, var(--green));
+    animation: spin 8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .profile-inner {
+    width: 100%; height: 100%; border-radius: 50%; overflow: hidden;
+    background: var(--bg2);
+    animation: spin-reverse 8s linear infinite;
+  }
+  @keyframes spin-reverse { to { transform: rotate(-360deg); } }
+  .profile-inner img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+
+  /* SECTIONS */
+  section { padding: 5rem 5%; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-family: var(--font-mono); font-size: 11px; color: var(--green); letter-spacing: 3px; margin-bottom: 0.5rem; }
+  .section-title { font-size: 28px; font-weight: 700; color: #e8f0fb; margin-bottom: 0.5rem; }
+  .section-line { width: 48px; height: 2px; background: var(--green); margin-bottom: 2.5rem; }
+  .section-divider { border: none; border-top: 1px solid var(--border); max-width: 1100px; margin: 0 auto; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { font-size: 15px; color: var(--text); line-height: 1.9; margin-bottom: 1rem; }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem; text-align: center; }
+  .stat-num { font-family: var(--font-mono); font-size: 22px; color: var(--green); font-weight: 700; }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+  .skill-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem; transition: border-color 0.2s; }
+  .skill-card:hover { border-color: var(--green); }
+  .skill-icon { font-size: 22px; color: var(--green); margin-bottom: 0.75rem; }
+  .skill-title { font-family: var(--font-mono); font-size: 12px; color: var(--green); margin-bottom: 0.75rem; letter-spacing: 1px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { background: #0d1a27; color: var(--muted); font-size: 11px; font-family: var(--font-mono); padding: 3px 8px; border-radius: 4px; border: 1px solid var(--border); }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+  .project-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; transition: border-color 0.25s, transform 0.25s; }
+  .project-card:hover { border-color: var(--green); transform: translateY(-4px); }
+  .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; }
+  .project-icon { font-size: 20px; color: var(--green); }
+  .badge { font-size: 10px; font-family: var(--font-mono); padding: 3px 9px; border-radius: 4px; letter-spacing: 1px; }
+  .badge-done { background: rgba(0,229,160,0.1); color: var(--green); border: 1px solid rgba(0,229,160,0.3); }
+  .badge-wip { background: rgba(239,159,39,0.1); color: #ef9f27; border: 1px solid rgba(239,159,39,0.3); }
+  .project-title { font-size: 15px; font-weight: 600; color: #e8f0fb; margin-bottom: 0.6rem; }
+  .project-desc { font-size: 13px; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  /* EXPERIENCE */
+  .exp-timeline { position: relative; padding-left: 2rem; }
+  .exp-timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px; background: var(--border); }
+  .exp-item { position: relative; padding-bottom: 2.5rem; }
+  .exp-item::before { content: ''; position: absolute; left: -2.4rem; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--green); box-shadow: 0 0 8px var(--green); }
+  .exp-date { font-family: var(--font-mono); font-size: 11px; color: var(--green); margin-bottom: 0.25rem; letter-spacing: 1px; }
+  .exp-role { font-size: 16px; font-weight: 600; color: #e8f0fb; margin-bottom: 2px; }
+  .exp-org { font-size: 13px; color: var(--muted); margin-bottom: 0.5rem; }
+  .exp-desc { font-size: 13px; color: var(--text); line-height: 1.7; }
+
+  /* CONTACT */
+  .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .contact-text p { font-size: 15px; color: var(--text); line-height: 1.9; margin-bottom: 1.5rem; }
+  .contact-links { display: flex; flex-direction: column; gap: 12px; }
+  .contact-item { display: flex; align-items: center; gap: 14px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.25rem; text-decoration: none; transition: border-color 0.2s; }
+  .contact-item:hover { border-color: var(--green); }
+  .contact-item i { color: var(--green); font-size: 17px; width: 20px; text-align: center; }
+  .contact-label { font-size: 11px; font-family: var(--font-mono); color: var(--muted); display: block; }
+  .contact-val { font-size: 13px; color: var(--text); }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 2rem 5%; text-align: center; }
+  footer p { font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+  footer span { color: var(--green); }
+
+  /* MOBILE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; text-align: center; gap: 2rem; padding-top: 5rem; }
+    .hero-image { padding-top: 0; order: -1; }
+    .profile-ring { width: 200px; height: 200px; }
+    .hero-bio { margin: 0 auto 2rem; }
+    .hero-btns, .socials { justify-content: center; }
+    .about-grid, .contact-wrapper { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links { display: none; flex-direction: column; gap: 1rem; position: absolute; top: 60px; left: 0; width: 100%; background: var(--bg2); padding: 1.5rem 5%; border-bottom: 1px solid var(--border); }
+    .nav-links.open { display: flex; }
+    .hamburger { display: flex; }
+  }
+
+  /* FADE IN ANIMATION */
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">AJ.dev</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#experience">experience</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div style="max-width:1100px;margin:0 auto;padding:0 5%;">
+  <div class="hero">
+    <div class="hero-content fade-in">
+      <p class="hero-tag">// ROBOTICS · AI/ML · EMBEDDED SYSTEMS</p>
+      <h1 class="hero-name">Akinola<br>John Adegbite</h1>
+      <p class="hero-role">EEE Student · First Class · FUTA</p>
+      <p class="hero-bio">I build intelligent, real-world systems — from deploying edge AI models to developing autonomous robots powered by computer vision and IoT. I'm currently building an autonomous cooking robot and have hands-on experience in web development.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-outline">Get In Touch</a>
+      </div>
+      <div class="socials">
+        <a href="https://github.com/Jakins-web" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/akinola-adegbite" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://x.com/AkinolaAde66427" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://wa.me/2348169121944" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.youtube.com/@jollytrendy2076" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="hero-image fade-in">
+      <div class="profile-ring">
+        <div class="profile-inner">
+          <img src="data:image/jpeg;base64,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" alt="Akinola John Adegbite">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="fade-in">
+    <p class="section-label">// 01 — ABOUT ME</p>
+    <h2 class="section-title">Who I Am</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid fade-in">
+    <div class="about-text">
+      <p>I'm an Electrical & Electronics Engineering student at FUTA, graduating 2027 with a First Class (CGPA 4.50/5.00). I specialise in Robotics, AI/ML, Embedded Systems, and IoT — with a strong interest in bridging the gap between hardware and software to solve real-world problems.</p>
+      <p>Currently working as a Robotics & AI/ML Engineer at Projectcage Technologies, where I design intelligent systems from PCB schematics to optimised edge AI models. I'm also a Research Assistant at FUTA's FARADAY Lab and an ML Instructor at AI-BEAM Builders Institute.</p>
+      <p>Beyond engineering, I have hands-on experience in web development and enjoy mentoring the next generation of engineers.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">4.50</div>
+        <div class="stat-label">CGPA / 5.00</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Projects Built</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">88.9%</div>
+        <div class="stat-label">Model Size Reduction</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">100+</div>
+        <div class="stat-label">Students Mentored</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="fade-in">
+    <p class="section-label">// 02 — SKILLS</p>
+    <h2 class="section-title">Technical Stack</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid fade-in">
+    <div class="skill-card">
+      <div class="skill-icon"><i class="fas fa-brain"></i></div>
+      <p class="skill-title">AI / ML</p>
+      <div class="skill-tags">
+        <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">TFLite</span><span class="tag">OpenCV</span><span class="tag">MobileNetV2</span><span class="tag">Scikit-learn</span><span class="tag">NumPy</span><span class="tag">Pandas</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="fas fa-microchip"></i></div>
+      <p class="skill-title">Hardware & Embedded</p>
+      <div class="skill-tags">
+        <span class="tag">Arduino</span><span class="tag">ESP32-CAM</span><span class="tag">Raspberry Pi</span><span class="tag">Embedded C/C++</span><span class="tag">PCB Design</span><span class="tag">Proteus</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="fas fa-robot"></i></div>
+      <p class="skill-title">Robotics & Control</p>
+      <div class="skill-tags">
+        <span class="tag">Autonomous Nav</span><span class="tag">Computer Vision</span><span class="tag">Closed-loop Control</span><span class="tag">Sensor Fusion</span><span class="tag">MATLAB/Simulink</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="fas fa-wifi"></i></div>
+      <p class="skill-title">IoT & Connectivity</p>
+      <div class="skill-tags">
+        <span class="tag">ThingSpeak</span><span class="tag">Discord Webhooks</span><span class="tag">Wireless Protocols</span><span class="tag">Sensor Arrays</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="fas fa-code"></i></div>
+      <p class="skill-title">Web Development</p>
+      <div class="skill-tags">
+        <span class="tag">HTML/CSS</span><span class="tag">JavaScript</span><span class="tag">PHP</span><span class="tag">Git/GitHub</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon"><i class="fas fa-certificate"></i></div>
+      <p class="skill-title">Certifications</p>
+      <div class="skill-tags">
+        <span class="tag">ML & Neural Networks</span><span class="tag">Google IT Professional</span><span class="tag">Python & Data Science</span><span class="tag">IEEE Member</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="fade-in">
+    <p class="section-label">// 03 — PROJECTS</p>
+    <h2 class="section-title">What I've Built</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid fade-in">
+    <div class="project-card">
+      <div class="project-header">
+        <i class="fas fa-utensils project-icon"></i>
+        <span class="badge badge-wip">IN PROGRESS</span>
+      </div>
+      <p class="project-title">Autonomous Cooking Robot</p>
+      <p class="project-desc">Architecting a full-stack cooking robot with automated ingredient dispensing, closed-loop feedback control, computer vision monitoring, and calibrated motor actuation for precise mechanical execution.</p>
+      <div class="project-stack">
+        <span class="tag">Computer Vision</span><span class="tag">Closed-loop Control</span><span class="tag">Embedded C</span><span class="tag">Actuators</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-header">
+        <i class="fas fa-fire project-icon"></i>
+        <span class="badge badge-done">COMPLETED</span>
+      </div>
+      <p class="project-title">Edge AI Gas Leakage Detector</p>
+      <p class="project-desc">Compressed a MobileNetV2 model from 21.63 MB to 2.39 MB (88.9% reduction) via quantization. Integrated MQ2 sensor with ThingSpeak IoT telemetry and automated Discord webhook alerts.</p>
+      <div class="project-stack">
+        <span class="tag">TFLite</span><span class="tag">MobileNetV2</span><span class="tag">MQ2 Sensor</span><span class="tag">ThingSpeak</span><span class="tag">IoT</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-header">
+        <i class="fas fa-video project-icon"></i>
+        <span class="badge badge-done">COMPLETED</span>
+      </div>
+      <p class="project-title">Surveillance & Obstacle Avoidance Robot</p>
+      <p class="project-desc">Mobile robot combining ESP32-CAM and ultrasonic sensors for real-time obstacle detection and live video streaming. Built a custom HTML/JavaScript web interface for remote navigation over local networks.</p>
+      <div class="project-stack">
+        <span class="tag">ESP32-CAM</span><span class="tag">Ultrasonic</span><span class="tag">HTML/JS</span><span class="tag">Live Streaming</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-header">
+        <i class="fas fa-leaf project-icon"></i>
+        <span class="badge badge-done">COMPLETED · 2025</span>
+      </div>
+      <p class="project-title">Plant Leaf Classification — ML Model</p>
+      <p class="project-desc">Trained a supervised ML model for plant species classification using leaf features. Managed the full pipeline from dataset creation and feature extraction to training, testing, and accuracy optimisation.</p>
+      <div class="project-stack">
+        <span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Data Preprocessing</span><span class="tag">ML Pipeline</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-header">
+        <i class="fas fa-solar-panel project-icon"></i>
+        <span class="badge badge-done">COMPLETED · 2024</span>
+      </div>
+      <p class="project-title">Smart Solar Water Purifier</p>
+      <p class="project-desc">Designed a low-cost solar-powered water purification unit with multi-stage filtration and UV treatment. Embedded control system optimised for rural off-grid deployment.</p>
+      <div class="project-stack">
+        <span class="tag">Embedded C</span><span class="tag">Solar PV</span><span class="tag">UV Treatment</span><span class="tag">Off-grid</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="fade-in">
+    <p class="section-label">// 04 — EXPERIENCE</p>
+    <h2 class="section-title">Where I've Worked</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="exp-timeline fade-in">
+    <div class="exp-item">
+      <p class="exp-date">MAY 2026 – PRESENT</p>
+      <p class="exp-role">Robotics & AI/ML Engineer — Industrial Trainee</p>
+      <p class="exp-org">Projectcage Technologies · Nigeria</p>
+      <p class="exp-desc">Engineering full-cycle intelligent robotics systems from schematic design to deployment. Building autonomous robots with computer vision, IoT integration, and embedded control systems.</p>
+    </div>
+    <div class="exp-item">
+      <p class="exp-date">MAY 2025 – PRESENT</p>
+      <p class="exp-role">Research Assistant</p>
+      <p class="exp-org">FARADAY Research Lab, FUTA · Akure, Nigeria</p>
+      <p class="exp-desc">Leading technical investigations and data analysis for university engineering initiatives. Principal researcher on the University Social Media project under Engr. Charles Udekwe.</p>
+    </div>
+    <div class="exp-item">
+      <p class="exp-date">OCT 2025 – PRESENT</p>
+      <p class="exp-role">Board Member, Secretary & ML Instructor</p>
+      <p class="exp-org">AI-BEAM Builders Institute · Akure, Nigeria</p>
+      <p class="exp-desc">Designing and delivering Python and ML labs covering data preprocessing, model training, and evaluation to a cohort of engineering students.</p>
+    </div>
+    <div class="exp-item">
+      <p class="exp-date">FEB 2025 – PRESENT</p>
+      <p class="exp-role">STEM Tutor & Mentor</p>
+      <p class="exp-org">Institute for University Preparatory Studies (IUPS) · Akure, Nigeria</p>
+      <p class="exp-desc">Preparing secondary school graduates for JAMB, JUPEB, and Diploma examinations. Mentoring 100+ students on academic excellence and goal orientation.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="fade-in">
+    <p class="section-label">// 05 — CONTACT</p>
+    <h2 class="section-title">Let's Connect</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="contact-wrapper fade-in">
+    <div class="contact-text">
+      <p>I'm actively seeking opportunities in AI/ML engineering, embedded systems, and robotics development. Whether you have a project, a job opportunity, or just want to talk tech — I'd love to hear from you.</p>
+      <a href="mailto:adegbiteakinola17@gmail.com" class="btn-primary" style="display:inline-block;">Send a Message</a>
+    </div>
+    <div class="contact-links">
+      <a class="contact-item" href="mailto:adegbiteakinola17@gmail.com">
+        <i class="fas fa-envelope"></i>
+        <div><span class="contact-label">Email</span><span class="contact-val">adegbiteakinola17@gmail.com</span></div>
+      </a>
+      <a class="contact-item" href="https://www.linkedin.com/in/akinola-adegbite" target="_blank">
+        <i class="fab fa-linkedin"></i>
+        <div><span class="contact-label">LinkedIn</span><span class="contact-val">akinola-adegbite</span></div>
+      </a>
+      <a class="contact-item" href="https://github.com/Jakins-web" target="_blank">
+        <i class="fab fa-github"></i>
+        <div><span class="contact-label">GitHub</span><span class="contact-val">Jakins-web</span></div>
+      </a>
+      <a class="contact-item" href="https://wa.me/2348169121944" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <div><span class="contact-label">WhatsApp</span><span class="contact-val">+234 816 912 1944</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Designed & built by <span>Akinola John Adegbite</span> · © 2026</p>
+</footer>
+
+<script>
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
